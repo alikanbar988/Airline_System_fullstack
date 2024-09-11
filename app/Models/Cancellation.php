@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\FlightTransaction;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cancellation extends Model
@@ -16,10 +16,9 @@ class Cancellation extends Model
       'flighttransaction_id'
      
     ];
-    public function FlightTransaction()
-    {
-        return $this->belongsTo(FlightTransaction::class);
-    }
-
+    //public function flighttransaction(): HasOne
+    ////{
+      //  return $this->hasOne(FlightTransaction::class, 'cancellation_id');
+   /// }
 
 }

@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('flighttransactions', function (Blueprint $table) {
             $table->id();
-           // $table->unsignedBigInteger('passenger_id');
-           $table->unsignedBigInteger('passenger_id'); 
+            $table->unsignedBigInteger('passenger_id'); 
+        //    $table->unsignedBigInteger('cancellation_id');
             $table->string('seatnumber');
             $table->string('date');
-            $table->string('fare');
+            $table->string('fare'); 
             $table->foreign('passenger_id')->references('id')->on('passengers')->onDelete('cascade');
-          
-           //  $table->foreignId('passenger_id')->constrained('passengers');
-          // $table->foreign('passenger_id')->references('id')->on('passengers')->onDelete('cascade');
+          //  $table->foreign('cancellation_id')->references('id')->on('cancellations')->onDelete('cascade');
+          // $table->foreignId('cancellation_id')->constrained('cancellations');
             $table->foreignId('flightmaster_id')->constrained('flightmasters');
             $table->foreignId('aircraft_id')->constrained('aircrafts');
 
@@ -35,5 +34,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('flighttransactions');
+      
     }
 };

@@ -13,7 +13,7 @@ class CancellationController extends Controller
      */
     public function index(request $request)
     {
-        $cancellations =Cancellation::with('flighttransactions','cancellations')->get();
+        $cancellation =Cancellation::with('flighttransaction','cancellation')->get();
         $flighttransactions=FlightTransaction::all();
         return view('pages.cancellation.index',compact('cancellations','flighttransactions'));
     }
@@ -24,7 +24,7 @@ class CancellationController extends Controller
      */
     public function store(Request $request)
     {
-        $cancellations=Cancellation::create($request->all());
+        $cancellation=Cancellation::create($request->all());
         return redirect()->back();
     }
 
@@ -57,6 +57,8 @@ class CancellationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $cancellation=Cancellation::find($id);
+        $cancellation->delete();
+        return redirect('cancellation');
     }
 }

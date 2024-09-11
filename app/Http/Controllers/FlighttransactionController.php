@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Aircraft;
 use App\Models\Passenger;
+use App\Models\Cancellation;
 use App\Models\Flightmaster;
 use Illuminate\Http\Request;
 use App\Models\FlightTransaction;
+use Illuminate\Support\Facades\DB;
 
 class FlighttransactionController extends Controller
 {
@@ -22,6 +24,12 @@ class FlighttransactionController extends Controller
         return view('pages.flighttransaction.index',compact('passengers','flightmasters','aircrafts','flighttransactions'));
     }
 
+    public function show($id)
+{
+    $flightTransaction = FlightTransaction::find($id);
+    
+    return view('pages.flighttransaction.index', compact('flightTransaction'));
+}
 
     /**
      * Store a newly created resource in storage.
@@ -38,6 +46,9 @@ class FlighttransactionController extends Controller
     public function edit(string $id)
     {
         $response['flighttransaction'] =FlightTransaction::find($id);
+        $passengers=Passenger::all();
+        $flightmasters=Flightmaster::all();
+        $aircrafts=Aircraft::all();
         return view('pages.flighttransaction.edit')->with($response);
     }
 
@@ -47,7 +58,7 @@ class FlighttransactionController extends Controller
     public function update(Request $request, string $id)
     {
         $flighttransaction=FlightTransaction::find($id);
-        $$flighttransaction->update(array_merge($$flighttransaction->toArray(),$request->toArray()));
+        $$flighttransaction->update($request->all);;
         return redirect('$flighttransaction');
     }
 
@@ -57,7 +68,7 @@ class FlighttransactionController extends Controller
     public function destroy(string $id)
     {
         $flighttransaction=FlightTransaction::find($id);
-        $$flighttransaction->delete();
-        return redirect('$flighttransaction');
+        $flighttransaction->delete();
+        return redirect('flighttransaction');
     }
 }

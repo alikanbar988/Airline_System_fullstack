@@ -21,10 +21,10 @@
                         </div>
                         <div class="col-md-6">
                             <label>Flight Transaction ID</label>
-                            <select name="flighttransaction_id" class="form-control">
-                                <option value="">Select Flight Transaction</option>
+                            <select name="flighttransaction->id" class="form-control">
+                                <option value="">Select Flight Transaction ID </option>
                                 @foreach($flighttransactions as $flighttransaction)
-                                <option value="{{flighttransaction_id}}" >{{$flighttransaction->name}}</option>
+                                <option value="{{$flighttransaction->id}}" >{{$flighttransaction->id}}</option>
                                 @endforeach
                             </select>
                      
@@ -36,48 +36,6 @@
                     </div>
                 </form>
             </div>
-
-                <table class="table mt-5">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col"> DepartureCity</th>
-                        <th scope="col">ArrivalCity</th>
-                        <th scope="col">DepartureTime</th>
-                        <th scope="col">ArrivalTime</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                        @foreach ( $cancellations as $key =>$cancellation )
-
-                        <tr>
-                            <td scope="col">{{ ++$key }}</td>
-                            <td scope="col">{{ $flightmaster->DepartureCity }}</td>
-                            <td scope="col">{{ $flightmaster->ArrivalCity}}</td>
-                            <td scope="col">{{ $flightmaster->DepartureTime}}</td>
-                            <td scope="col">{{ $flightmaster->ArrivalTime }}</td>
-                            <td scope="col">
-
-                            <a href="{{  route('cancellation.edit', $cancellation->id) }}">
-                            <button class="btn btn-primary btn-sm">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                            </button>
-                            </a>
-                            
-                            <form action="{{ route('cancellation.destroy', $cancellation->id) }}" method="POST" style ="display:inline">
-                             @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                            </td>
-
-                          </tr>
-
-                        @endforeach
-
-
 
 
                     </tbody>

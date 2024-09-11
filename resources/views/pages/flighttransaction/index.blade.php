@@ -52,7 +52,7 @@
                             <select name="flightmaster_id" class="form-control">
                                 <option value="">Select flightmaster</option>
                                 @foreach($flightmasters as $flightmaster)
-                                <option value="{{$flightmaster->id}}" >{{$flightmaster->name}}</option>
+                                <option value="{{$flightmaster->id}}" >{{$flightmaster->id}}</option>
                                 @endforeach
                             </select>
 
@@ -62,7 +62,7 @@
                                 <select name="aircraft_id" class="form-control">
                                     <option value="">Select aircraft</option>
                                     @foreach($aircrafts as $aircraft)
-                                    <option value="{{$aircraft->id}}" >{{$aircraft->name}}</option>
+                                    <option value="{{$aircraft->id}}" >{{$aircraft->Aircraftnumber}}</option>
                                     @endforeach
                                 </select>
     
@@ -100,15 +100,11 @@
                             <td scope="col">{{ $flighttransaction->date}}</td>
                             <td scope="col">{{ $flighttransaction->fare}}</td>
                             <td scope="col">{{ $flightmaster->passenger->name ?? $passenger->name }}</td>
-                            <td scope="col">{{ $flightmaster->flightmaster->name ?? $flightmaster->name }}</td>
-                            <td scope="col">{{ $flightmaster->aircraft->name ?? $aircraft->name}}</td>
+                            <td scope="col">{{ $flightmaster->flightmaster->name ?? $flightmaster->id }}</td>
+                            <td scope="col">{{ $flightmaster->aircraft->name ?? $aircraft->Aircraftnumber}}</td>
                             <td scope="col">
 
-                            <a href="{{  route('flighttransaction.edit', $flighttransaction->id) }}">
-                            <button class="btn btn-primary btn-sm">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                            </button>
-                            </a>
+                        
                             
                             <form action="{{ route('flighttransaction.destroy', $flighttransaction->id) }}" method="POST" style ="display:inline">
                              @csrf

@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('cancellations', function (Blueprint $table) {
             $table->id();
+      //   $table->unsignedBigInteger('flighttransaction_id')->nullable(); 
             $table->string('date');
-            $table->foreignId('flighttransaction_id')->constrained('flighttransactions');
+          // $table->foreign('flighttransaction_id')
+         //   ->references('id')
+          // ->on('flighttransactions')
+          //  ->onDelete('cascade');
             $table->timestamps();
         });
     }

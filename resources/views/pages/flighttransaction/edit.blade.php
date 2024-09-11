@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <h3 align="center" class="mt-5">passenger Management</h3>
+        <h3 align="center" class="mt-5">flighttransaction</h3>
 
         <div class="row">
             <div class="col-md-2">
@@ -12,37 +12,62 @@
             <div class="col-md-8">
 
             <div class="form-area">
-                <form method="POST" action="{{ route('passenger.update', $passenger->id) }}">
+                <form method="POST" action="{{ route('flighttransaction.update', $flighttransaction->id) }}">
                 {!! csrf_field() !!}
                   @method("PATCH")
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Full Name</label>
-                            <input type="text" class="form-control" name="name" value="{{ $passenger->name }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label>Age</label>
-                            <input type="text" class="form-control" name="age">
-
-                        </div>
-                        
+                  <div class="row">
+                    <div class="col-md-6">
+                        <label>Seat Number</label>
+                        <input type="text" class="form-control" name="seatnumber">
                     </div>
-                
-                        <div class="col-md-12">
-                            <label>Gender</label>
-                            <select class="form-select" aria-label="Default select Example">
-                                <option selected>open this selected menu </option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                </select>
-                        </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label>Phone</label>
-                            <input type="text" class="form-control" name="phone">
+                    <div class="col-md-6">
+                        <label>Date</label>
+                        <input type="date" class="form-control" name="date">
 
-                        </div>
                     </div>
+                    
+                </div>
+            
+                  
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Fare</label>
+                        <input type="text" class="form-control" name="fare">
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Passenger</label>
+                    <select name="passenger_id" class="form-control">
+                        <option value="">Select passenger</option>
+                        @foreach($passengers as $passenger)
+                        <option value="{{$passenger->id}}" >{{$passenger->name}}</option>
+                        @endforeach
+                    </select>
+
+
+                    <div class="col-md-6">
+                        <label>Flightmaster</label>
+                        <select name="flightmaster_id" class="form-control">
+                            <option value="">Select flightmaster</option>
+                            @foreach($flightmasters as $flightmaster)
+                            <option value="{{$flightmaster->id}}" >{{$flightmaster->id}}</option>
+                            @endforeach
+                        </select>
+
+
+                        <div class="col-md-6">
+                            <label>Aircraft</label>
+                            <select name="aircraft_id" class="form-control">
+                                <option value="">Select aircraft</option>
+                                @foreach($aircrafts as $aircraft)
+                                <option value="{{$aircraft->id}}" >{{$aircraft->Aircraftnumber}}</option>
+                                @endforeach
+                            </select>
+
+              
+             
+            
                     <div class="row">
                         <div class="col-md-12 mt-3">
                             <input type="submit" class="btn btn-primary" value="Update">
@@ -78,4 +103,4 @@
             margin-left: 20px;
         }
     </style>
-@endpush
+    @endpush
