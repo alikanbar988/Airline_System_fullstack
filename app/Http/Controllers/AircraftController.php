@@ -25,8 +25,6 @@ class AircraftController extends Controller
         $aircraft=Aircraft::create($request->all());
         return redirect()->back();
     }
-
-   
     /**
      * Show the form for editing the specified resource.
      */
